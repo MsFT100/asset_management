@@ -1,11 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from config import config
+from .models import Company
+from .forms import CompanyForm
 
-import sys
-sys.path.append('..')
 
 
 def index(request):
-    db = config.DatabaseConfig()
-    return HttpResponse(db.name+ " "+db.user)
+    return render(request, 'templates/adminlte/index.html')
+
+
+def create(request):
+    if request.method == "POST":
+        form = CompanyForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('company_index')
+            except:
+                pass
+    else:
+        form = CompanyForm()
+
+    return render(request, "company_create.html", {'form': form})
