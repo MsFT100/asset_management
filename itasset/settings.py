@@ -72,7 +72,12 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "itasset.context_processors.active_menu",  # Add the context processor here
             ],
+
+            # 'libraries':{
+            #     'pagination_tags': 'src.templatetags.pagination_tags',
+            # }
         },
     },
 ]
