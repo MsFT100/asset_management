@@ -20,30 +20,42 @@ Company List {% endblock %} {% block content %} {% load crispy_forms_tags %}
     </div>
     <!-- /.container-fluid -->
 </div>
+<section class="content">
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div
+                    class="card-body row d-flex align-items-center justify-content-center"
+                >
+                    <div class="col-md-7">
+                        <p class="mb-2">
+                            Fields marked with (*) are mandatory.
+                        </p>
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-md-12"></div>
+                        </div>
 
-<div class="card">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div
-            class="card-body row  d-flex align-items-center justify-content-center"
-        >
-            <div class="col-md-7">
-                <p class="mb-2">Fields marked with (*) are mandatory.</p>
-                <div class="row form-group">
-                    <div class="col-sm-12 col-md-12"></div>
+                        {% csrf_token %} {{form|crispy}}
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-md-12"></div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-success float-right"
+                        >
+                            <i class="fa fa-save pr-1"></i>
+                            Save
+                        </button>
+                    </div>
                 </div>
-
-                {% csrf_token %} {{form|crispy}}
-                <div class="row form-group">
-                    <div class="col-sm-12 col-md-12"></div>
-                </div>
-                <button type="submit" class="btn btn-success float-right">
-                    <i class="fa fa-save pr-1"></i>
-                    Save
-                </button>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+</div>
+</div>
 </div>
 {% comment %}
 <form method="post">

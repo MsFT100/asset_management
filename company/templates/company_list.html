@@ -21,8 +21,16 @@
     <!-- /.container-fluid -->
 </div>
 
+
 <section class="content">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <a href="{% url 'company_create' %}" class="btn btn-primary float-right">Create Company</a>
+                {% comment %} <input type="submit" value="Save Changes" class="btn btn-success float-right"> {% endcomment %}
+            </div>
+        </div>
+    </br>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -32,7 +40,6 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Website</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,7 +47,23 @@
                                 <tr>
                                     <td>{{ company.name }}</td>
                                     <td>{{ company.email }}</td>
-                                    <td>{{ company.website }}</td>
+                                    <td class="project-actions text-right">
+<a class="btn btn-primary btn-sm" href="#">
+<i class="fas fa-folder">
+</i>
+View
+</a>
+<a class="btn btn-info btn-sm" href="#">
+<i class="fas fa-pencil-alt">
+</i>
+Edit
+</a>
+<a class="btn btn-danger btn-sm" href="#">
+<i class="fas fa-trash">
+</i>
+Delete
+</a>
+</td>
                                 </tr>
                                 {% empty %}
                                 <tr>
