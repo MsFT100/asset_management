@@ -17,4 +17,7 @@ class DatabaseConfig:
         self.host = os.getenv('DB_HOST')
         self.port = os.getenv('DB_PORT')
 
-test = 3453
+# test = 3453
+
+DEFAULT_PER_COMPANY = 5
+MAX_PER_COMPANY = 50

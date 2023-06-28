@@ -35,12 +35,15 @@ accounts/reset/done/ [name='password_reset_complete']
 
 """
 handler403 = 'itasset.views.error_403'
+handler404 = 'itasset.views.error_404'
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='dashboard.html'), name='dashboard'),
     path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
-    path("company/", include("company.urls"))
+
+    path("company/", include("company.urls")),
+    path("branch/", include("branch.urls"))
 ]
 
 

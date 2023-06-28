@@ -1,4 +1,4 @@
-{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Company
+{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Branch
 Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content-header">
@@ -23,29 +23,26 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
     <div class="card">
         <div class="card-body row">
             <div
-                class="col-12 col-md-5 order-1 order-md-1 text-center d-flex align-items-center justify-content-center"
+                class="col-5 text-center d-flex align-items-center justify-content-center"
             >
                 <div class="">
                     <h2><strong>{{ form.name.value|upper }}</strong></h2>
-                    <img
+                    {% comment %} <img
                         src="{{ form.logo.value.url }}"
                         alt="{{ form.name.value }}"
                         width="200"
                         height="200"
-                    />
+                    /> {% endcomment %}
                 </div>
             </div>
-            <div class="col-12 col-md-7 order-2 order-md-2">
+            <div class="col-7">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <!-- Customize individual fields -->
                         {{ form.name|as_crispy_field }}
-                        {{ form.email|as_crispy_field }}
-                        {{ form.domain|as_crispy_field }}
-                        {{ form.logo|as_crispy_field }}
                         {{ form.location|as_crispy_field }}
-                        {{ form.company_active|as_crispy_field }}
+                        {{ form.branch_active|as_crispy_field }}
                     
                     <button type="submit" class="btn btn-success float-right">
                         <i class="fa fa-save pr-1"></i>

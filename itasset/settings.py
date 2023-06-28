@@ -31,7 +31,10 @@ SECRET_KEY = "django-insecure-vhx8y7zmrz20k&4&r&y__8@^g6mvu@y1@%nje4!*pu3$#&kt5r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'd3b2-105-163-0-175.ngrok-free.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://d3b2-105-163-0-175.ngrok-free.app']
+
 
 
 # Application definition
@@ -44,7 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # apps
-    "company.apps.CompanyConfig",
+    "company",
+    "branch",
     "crispy_forms",
     "crispy_bootstrap4"
 ]
@@ -129,10 +133,9 @@ USE_TZ = True
 
 LOGIN_URL ='/accounts/login/'
 
-LOGIN_REDIRECT_URL = "/"
 
 LOGIN_REDIRECT_URL = "dashboard"
-LOGOUT_REDIRECT_URL = "dashboard"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -155,3 +158,5 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTH_USER_MODEL = 'company.CustomUser'

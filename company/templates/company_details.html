@@ -1,0 +1,70 @@
+{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Company
+List {% endblock %} {% block content %} {% load crispy_forms_tags %}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card">
+        <div class="card-body row">
+            <div
+                class="col-12 col-md-5 order-1 order-md-1 text-center d-flex align-items-center justify-content-center"
+            >
+                <div class="">
+                    <h2><strong>{{company.name|upper }}</strong></h2>
+                    <img src="{{ company.logo.url }}" alt="{{ company.name }}" width="200" height="200">
+                </div>
+            </div>
+            <div class="col-12 col-md-7 order-2 order-md-2">
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" id="inputName" value="{{company.name|upper }}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Domain</label>
+                    <input type="email" id="inputEmail" value="{{company.domain|lower }}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" id="inputEmail" value="{{company.email|lower }}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Location</label>
+                    <input type="email" id="inputEmail" value="{{company.location|lower }}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Domain</label>
+                    <input type="email" id="inputEmail" value="{{company.domain|lower }}" class="form-control" disabled/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputEmail">Is Active </label>
+                    {% if company.company_active %}
+                                    <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Inactive</span>
+                                    {% endif %}
+                </div>
+               
+                <div class="form-group">
+                    <a href="{% url 'company_edit' company.id %}" class="btn btn-primary float-right">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

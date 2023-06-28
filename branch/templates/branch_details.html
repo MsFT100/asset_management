@@ -1,0 +1,58 @@
+{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Branch
+Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Branch Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Branch Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card">
+        <div class="card-body row">
+            <div
+                class="col-5 text-center d-flex align-items-center justify-content-center"
+            >
+                <div class="">
+                    <h2><strong>{{branch.name|upper }}</strong></h2>
+                    {% comment %} <img src="{{ branch.logo.url }}" alt="{{ branch.name }}" width="200" height="200"> {% endcomment %}
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" id="inputName" value="{{branch.name|upper }}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Location</label>
+                    <input type="email" id="inputEmail" value="{{branch.location|lower }}" class="form-control" disabled/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="inputEmail">Is Active </label>
+                    {% if branch.branch_active %}
+                                    <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Inactive</span>
+                                    {% endif %}
+                </div>
+               
+                <div class="form-group">
+                    <a href="{% url 'branch_edit' branch.id %}" class="btn btn-primary float-right">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

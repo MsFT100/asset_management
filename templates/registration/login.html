@@ -1,6 +1,5 @@
 <!-- templates/registration/login.html -->
-{% load static %}
-{% load crispy_forms_tags %}
+{% load static %} {% load crispy_forms_tags %}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,16 +20,15 @@
         href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}"
     />
 
-    <link
-        rel="stylesheet"
-        href="{% static 'dist/css/adminlte.min.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}" />
+    {% comment %}
     <script
         defer=""
         referrerpolicy="origin"
         src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyQWRtaW5MVEUlMjAzJTIwJTdDJTIwTG9nJTIwaW4lMjIlMkMlMjJ4JTIyJTNBMC40NDcxNjMxNDU0OTExMzA5JTJDJTIydyUyMiUzQTEyODIlMkMlMjJoJTIyJTNBOTMzJTJDJTIyaiUyMiUzQTkyNyUyQyUyMmUlMjIlM0ExMjgwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGYWRtaW5sdGUuaW8lMkZ0aGVtZXMlMkZ2MyUyRnBhZ2VzJTJGZXhhbXBsZXMlMkZsb2dpbi5odG1sJTIyJTJDJTIyciUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGYWRtaW5sdGUuaW8lMkZ0aGVtZXMlMkZ2MyUyRnBhZ2VzJTJGZXhhbXBsZXMlMkZjb250YWN0cy5odG1sJTIyJTJDJTIyayUyMiUzQTI0JTJDJTIybiUyMiUzQSUyMlVURi04JTIyJTJDJTIybyUyMiUzQS0xODAlMkMlMjJxJTIyJTNBJTVCJTVEJTdE"
     ></script>
-    <script nonce="ab54d382-344b-4f71-96b8-d8ac2a819437">
+    {% endcomment %}
+    {% comment %} <script nonce="ab54d382-344b-4f71-96b8-d8ac2a819437">
         ;(function (w, d) {
             !(function (dK, dL, dM, dN) {
                 dK[dM] = dK[dM] || {}
@@ -97,7 +95,7 @@
                     : dK.addEventListener('DOMContentLoaded', zaraz.init)
             })(w, d, 'zarazData', 'script')
         })(window, document)
-    </script>
+    </script> {% endcomment %}
 </head>
 
 <body class="login-page" style="min-height: 496.781px">
@@ -109,19 +107,48 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
+
                 <form method="post">
-                    {% csrf_token %}
+                    {% csrf_token %} 
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %} {{ error }} 
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <div class="input-group mb-3">
-                        {{ form.username|as_crispy_field }}
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            placeholder="Email"
+                            required
+                        />
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="input-group mb-3">
-                        {{ form.password|as_crispy_field }}
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Password"
+                            required
+                        />
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember" />
-                                <label for="remember">Remember Me</label>
+                                <label for="remember"> Remember Me </label>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -130,12 +157,13 @@
                                 type="submit"
                                 class="btn btn-primary btn-block"
                             >
-                                Log In
+                                Sign In
                             </button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
+
                 <div class="social-auth-links text-center mb-3">
                     <p>- OR -</p>
                     <a href="#" class="btn btn-block btn-primary">
