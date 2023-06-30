@@ -7,5 +7,5 @@ urlpatterns = [
     path('create/', company_create, name="company_create"),
     path('<int:company_id>/', company_details, name="company_details"),
     path('<int:company_id>/edit/', company_edit, name="company_edit"),
-    # path('<int:company_id>/delete/', company_delete, name="company_delete"),
+    #path('<int:company_id>/delete/', company_delete, name="company_delete"),
 ]

@@ -43,7 +43,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     path("company/", include("company.urls")),
-    path("branch/", include("branch.urls"))
+    path("branch/", include("branch.urls")),
+    path("employee/", include("employee.urls")),
 ]
 
 

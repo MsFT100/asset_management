@@ -428,6 +428,41 @@
 
               {% endif %}
 
+              {% if perms.employee.view_employee %}
+              <li class="nav-item menu-open">
+                <a
+                  href="{% url 'employee_list' %}"
+                  class="nav-link {% if '/employee/' in active_menu %}active{% endif %}"
+                >
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Employee
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'employee_create' %}"
+                      class="nav-link {% if '/employee/' in active_menu and 'create' in active_menu %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'employee_list' %}"
+                      class="nav-link {% if '/employee/' in active_menu and 'list' in active_menu %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              {% endif %}
 
               <li class="nav-item">
                 <a
