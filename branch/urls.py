@@ -9,5 +9,5 @@ urlpatterns = [
     # TODO 
     path('<int:branch_id>/', branch_details, name="branch_details"),
     path('<int:branch_id>/edit/', branch_edit, name="branch_edit"),
-    # path('<int:branch_id>/delete/', branch_delete, name="branch_delete"),
+     #path('<int:branch_id>/delete/', branch_delete, name="branch_delete"),
 ]

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # apps
     "company",
     "branch",
+    "employee",
     "crispy_forms",
     "crispy_bootstrap4"
 ]
