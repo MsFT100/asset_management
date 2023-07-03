@@ -1,10 +1,10 @@
 from django import forms
-from .models import employee
+from .models import Employee
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 
 
-class employeeForm(forms.ModelForm):
+class EmployeeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -19,7 +19,7 @@ class employeeForm(forms.ModelForm):
         )
 
     class Meta:
-        model = employee
+        model = Employee
         fields = ['name',  'location', 'gender', 'address', 'position', 'department']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),

@@ -2,7 +2,7 @@ from django.db import models
 from company.models import Company, CustomUser
 
 # Create your models here.
-class employee(models.Model):
+class Employee(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=200)
     location = models.CharField(blank=True, null=True, max_length=255)
@@ -17,7 +17,7 @@ class employee(models.Model):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
-        db_table = 'employee'
+        db_table = 'Employee'
 
     def __str__(self):
         return self.name
