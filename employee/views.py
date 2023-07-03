@@ -1,9 +1,8 @@
 import os
 from django.shortcuts import render, redirect, get_object_or_404
 
-from employee.models import employee
-from .models import employee
-from .forms import employeeForm
+from .models import Employee
+from .forms import EmployeeForm
 
 from django.core.paginator import Paginator
 from django.core.files.storage import default_storage
@@ -16,7 +15,7 @@ from django.conf import settings
 @permission_required("employee.add_employee", raise_exception=True)
 def employee_create(request):
     if request.method == 'POST':
-        form = employeeForm(request.POST)
+        form = EmployeeForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.company = request.user.company
@@ -25,7 +24,7 @@ def employee_create(request):
             return redirect('employee_list')
 
     else:
-        form = employeeForm()
+        form = EmployeeForm()
     return render(request, 'employee_create.html', {"form": form})
 
 
@@ -33,7 +32,7 @@ def employee_create(request):
 @permission_required("employee.view_employee", raise_exception=True)
 def employee_list(request):
     # employee_list = employee.objects.get_queryset().order_by('id')
-    employee_list = employee.objects.filter(company=request.user.company).order_by('id')
+    employee_list = Employee.objects.filter(company=request.user.company).order_by('id')
 
     # Configure the number of items per page
     items_per_page = 5
@@ -57,13 +56,13 @@ def employee_edit(request, employee_id):
     employee = get_object_or_404(employee, id=employee_id)
     if request.user.company.id == employee.company.id:
         if request.method == 'POST':  
-                form = employeeForm(request.POST, instance=employee)
+                form = EmployeeForm(request.POST, instance=employee)
                 if form.is_valid():                   
                     form.save()
                     return redirect('employee_details', employee_id=employee_id)
         else:        
             # employee = get_object_or_404(employee, id=employee_id)
-            form = employeeForm(instance=employee)
+            form = EmployeeForm(instance=employee)
 
         return render(request, 'employee_edit.html', {'form': form})
 
