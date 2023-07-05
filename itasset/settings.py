@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # IT Asset apps
+    # ITAsset apps
     "company",
     "branch",
     "employee",
