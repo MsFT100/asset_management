@@ -428,6 +428,41 @@
               </li>
 
               {% endif %}
+              {% if perms.department.view_department %}
+              <li class="nav-item menu-open">
+                <a
+                  href="{% url 'department_list' %}"
+                  class="nav-link {% if '/branch/' in active_menu %}active{% endif %}"
+                >
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Departments
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'department_create' %}"
+                      class="nav-link {% if '/department/' in active_menu and 'create' in active_menu %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'department_list' %}"
+                      class="nav-link {% if '/department/' in active_menu and 'list' in active_menu %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              {% endif %}
 
               {% if perms.employee.view_employee %}
               <li class="nav-item">
