@@ -1,12 +1,18 @@
 from django.db import models
 from company.models import Company, CustomUser
 
-# Create your models here.
+GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
+
 class Employee(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=200)
     location = models.CharField(blank=True, null=True, max_length=255)
-    gender = models.CharField(max_length=10)
+    # gender = models.CharField(max_length=10)
+    gender = models.CharField(
+        max_length=1, choices=GENDER_CHOICES, default='M', null=True)
     address = models.CharField(max_length=100)
     position = models.CharField(max_length=50)
     department = models.CharField(max_length=50)

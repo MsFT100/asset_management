@@ -9,6 +9,7 @@ from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import Http404
 from django.conf import settings
+from django.contrib import messages
 
 
 @login_required
@@ -20,8 +21,11 @@ def employee_create(request):
             obj = form.save(commit=False)
             obj.company = request.user.company
             obj.save()
+            messages.success(request, 'Employee saved successfully.')
             # TODO :CORRECT THIS
             return redirect('employee_list')
+        else:            
+            messages.error(request, 'Error occurred while saving the employee.')
 
     else:
         form = EmployeeForm()
@@ -53,13 +57,16 @@ def employee_list(request):
 @login_required
 @permission_required("employee.change_employee", raise_exception=True)
 def employee_edit(request, employee_id):
-    employee = get_object_or_404(employee, id=employee_id)
+    employee = get_object_or_404(Employee, id=employee_id)
     if request.user.company.id == employee.company.id:
         if request.method == 'POST':  
                 form = EmployeeForm(request.POST, instance=employee)
                 if form.is_valid():                   
                     form.save()
-                    return redirect('employee_details', employee_id=employee_id)
+                    messages.success(request, 'Employee updated successfully.')
+                    return redirect('employee_list')
+                else:
+                    messages.error(request, 'Error occurred while updating the employee.')
         else:        
             # employee = get_object_or_404(employee, id=employee_id)
             form = EmployeeForm(instance=employee)
@@ -67,15 +74,15 @@ def employee_edit(request, employee_id):
         return render(request, 'employee_edit.html', {'form': form})
 
     else:
-        raise Http404("employee not found.")
+        raise Http404("Employee not found.")
 
 
 @login_required
 @permission_required("employee.view_employee", raise_exception=True)
 def employee_details(request, employee_id):
-    employee = get_object_or_404(employee, id=employee_id)
+    employee = get_object_or_404(Employee, id=employee_id)
     if request.user.company.id == employee.company.id:
         return render(request, 'employee_details.html', {'employee': employee})
     else:
-        raise Http404("employee not found.")
+        raise Http404("Employee not found.")
 
