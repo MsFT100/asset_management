@@ -8,6 +8,7 @@ GENDER_CHOICES = (
 
 class Employee(models.Model):
     id = models.BigAutoField(primary_key=True)
+    staff_id = models.IntegerField(blank=True, unique=True, null=True)
     name = models.CharField(max_length=200)
     location = models.CharField(blank=True, null=True, max_length=255)
     # gender = models.CharField(max_length=10)
@@ -23,7 +24,7 @@ class Employee(models.Model):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
-        db_table = 'Employee'
+        db_table = 'employee'
 
     def __str__(self):
         return self.name

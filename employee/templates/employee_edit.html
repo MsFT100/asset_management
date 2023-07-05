@@ -41,6 +41,7 @@ Edit {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
                     <!-- Customize individual fields -->
                         {{ form.name|as_crispy_field }}
+                        {{ form.staff_id|as_crispy_field }}
                         {{ form.location|as_crispy_field }}
                         {{ form.gender|as_crispy_field }}
                         {{ form.address|as_crispy_field }}
