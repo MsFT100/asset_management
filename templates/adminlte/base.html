@@ -357,12 +357,12 @@
                with font-awesome or any other icon font library -->
 
               {% if perms.company.view_company %}
-              <li class="nav-item menu-open">
+              <li class="nav-item">
                 <a
                   href="{% url 'company_list' %}"
                   class="nav-link {% if '/company/' in active_menu %}active{% endif %}"
                 >
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fa fa-building"></i>
                   <p>
                     Company
                     <i class="right fas fa-angle-left"></i>
@@ -393,12 +393,13 @@
               {% endif %}
 
               {% if perms.branch.view_branch %}
-              <li class="nav-item menu-open">
+              <li class="nav-item">
                 <a
                   href="{% url 'branch_list' %}"
                   class="nav-link {% if '/branch/' in active_menu %}active{% endif %}"
                 >
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fa fa-bold"></i>
+
                   <p>
                     Branch
                     <i class="right fas fa-angle-left"></i>
@@ -429,12 +430,12 @@
               {% endif %}
 
               {% if perms.employee.view_employee %}
-              <li class="nav-item menu-open">
+              <li class="nav-item">
                 <a
                   href="{% url 'employee_list' %}"
                   class="nav-link {% if '/employee/' in active_menu %}active{% endif %}"
                 >
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fa fa-users"></i>
                   <p>
                     Employee
                     <i class="right fas fa-angle-left"></i>
@@ -463,46 +464,40 @@
               </li>
 
               {% endif %}
-
+              {% if perms.device.view_device %}
               <li class="nav-item">
                 <a
-                  href="{% url 'company_list' %}"
-                  class="nav-link {% if active_menu == '/Department/' %}active{% endif %}"
+                  href="{% url 'device_list' %}"
+                  class="nav-link {% if '/device/' in active_menu %}active{% endif %}"
                 >
-                  <i class="nav-icon far fa-building"></i>
-                  <p>Department</p>
+                  <i class="nav-icon fa fa-desktop"></i>
+                  <p>
+                    Device
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'device_create' %}"
+                      class="nav-link {% if '/device/' in active_menu and 'create' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-plus-circle"></i>
+                      <p>Create</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'device_list' %}"
+                      class="nav-link {% if '/device/' in active_menu and 'list' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-list-ul"></i>
+                      <p>List</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-
-              <li class="nav-item">
-                <a
-                  href="{% url 'company_list' %}"
-                  class="nav-link {% if active_menu == '/Device/' %}active{% endif %}"
-                >
-                  <i class="nav-icon far fa-building"></i>
-                  <p>Device</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a
-                  href="{% url 'company_list' %}"
-                  class="nav-link {% if active_menu == '/Accessories/' %}active{% endif %}"
-                >
-                  <i class="nav-icon far fa-building"></i>
-                  <p>Accessories</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a
-                  href="{% url 'company_list' %}"
-                  class="nav-link {% if active_menu == '/Components/' %}active{% endif %}"
-                >
-                  <i class="nav-icon far fa-building"></i>
-                  <p>Components</p>
-                </a>
-              </li>
+              {% endif %}
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
