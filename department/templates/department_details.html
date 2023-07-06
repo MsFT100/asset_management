@@ -34,11 +34,17 @@ List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                     <input type="text" id="inputName" value="{{department.name|upper }}" class="form-control" disabled/>
                 </div>
                
+              
+
+                <div class="form-group">
+                    <label for="inputBranch">Branch</label>
+                    <input type="text" id="inputBranch" value="{{ department.branch.name }}" class="form-control" disabled/>
+                </div>
+               
                 <div class="form-group">
                     <label for="inputName">Comments</label>
                     <input type="text" id="inputName" value="{{department.comment|upper }}" class="form-control" disabled/>
                 </div>
-               
                 
                 <div class="form-group">
                     <label for="inputEmail">Is Active </label>

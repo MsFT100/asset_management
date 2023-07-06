@@ -44,8 +44,9 @@ department List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                         {% csrf_token %}
                         
                         {{ form.name|as_crispy_field }}
-                        {{ form.comment|as_crispy_field }}
+                        
                         {{ form.branch|as_crispy_field }}
+                        {{ form.comment|as_crispy_field }}
                         {{ form.department_active|as_crispy_field }}
                       
                         

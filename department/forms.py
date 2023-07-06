@@ -22,7 +22,7 @@ class DepartmentForm(forms.ModelForm):
         fields = ['name', 'comment', 'department_active', 'branch']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'comment': forms.TextInput(attrs={'class': 'form-control'}),
+            #'comment': forms.TextInput(attrs={'class': 'form-control'}),
             'branch': forms.Select(attrs={'class': 'form-control'}),
             'department_active': forms.CheckboxInput(attrs={'class': 'form-control'}),
         }

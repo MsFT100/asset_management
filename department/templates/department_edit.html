@@ -1,49 +1,73 @@
-{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Department
-Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
-<section class="content-header">
+
+{% extends 'adminlte/base.html' %} 
+
+{% load static %} {% block title %}
+department List {% endblock %} {% block content %} {% load crispy_forms_tags %}
+
+<div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Edit</h1>
+                <h1 class="m-0">Edit Department</h1>
             </div>
+            <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'dashboard' %}">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Edit Department</li>
                 </ol>
             </div>
+            <!-- /.col -->
         </div>
+        <!-- /.row -->
     </div>
-</section>
-
+    <!-- /.container-fluid -->
+</div>
 <section class="content">
-    <div class="card">
-        <div class="card-body row">
-            <div
-                class="col-12 col-md-5 order-1 order-md-1 text-center d-flex align-items-center justify-content-center"
-            >
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div
+                    class="card-body row d-flex align-items-center justify-content-center"
+                >
+                    <div class="col-md-7">
+                        <p class="mb-2">
+                            Fields marked with (*) are mandatory.
+                        </p>
+                        {{form.errors}}
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-md-12"></div>
+                        </div>
 
-            <div class="col-12 col-md-7 order-2 order-md-2">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                    <!-- Customize individual fields -->
-                        {{ form.name|as_crispy_field }}
+                        {% csrf_token %}
                         
+                        {{ form.name|as_crispy_field }}
+                
+                        {{ form.branch|as_crispy_field }}
                         {{ form.comment|as_crispy_field }}
                         {{ form.department_active|as_crispy_field }}
-                    
-                    <button type="submit" class="btn btn-success float-right">
-                        <i class="fa fa-save pr-1"></i>
-                        Save
-                    </button>
-                </form>
-            </div>
+                      
+                        
+                        <div class="row form-group">
+                            <div class="col-sm-12 col-md-12"></div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-success float-right"
+                        >
+                            <i class="fa fa-save pr-1"></i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</section>
-
+</div>
+</div>
+</div>
 {% endblock %}

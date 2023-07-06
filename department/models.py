@@ -8,7 +8,8 @@ from branch.models import Branch
 class Department(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    comment = models.CharField(max_length=200, null=True, blank=True)
+    #comment = models.CharField(max_length=200, null=True, blank=True)
+    comment = models.TextField(blank=True, null=True)
     department_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

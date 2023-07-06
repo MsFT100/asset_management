@@ -63,6 +63,8 @@ Department List
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    
+                                    <th>Branch</th>
                                     <th>Comments</th>
                                     <th>Active</th>
                                     <th>Actions</th>
@@ -74,6 +76,7 @@ Department List
                                     {% comment %} <td><a href="{% url 'department_details' department.id %}">{{ department.name }}</a></td> {% endcomment %}
                                     <td>{{ department.name }}</td>
                                     <td>{{ department.comment }}</td>
+                                    <td>{{ department.branch }}</td>
                                     <td>
                                         {% if department.department_active %}
                                         <span class="badge bg-success">Active</span>
