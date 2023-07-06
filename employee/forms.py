@@ -5,6 +5,8 @@ from crispy_forms.layout import Layout, Submit, Field
 
 
 class EmployeeForm(forms.ModelForm):
+    
+    staff_id = forms.CharField(label = "Staff ID")
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

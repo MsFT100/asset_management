@@ -60,7 +60,7 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                             <thead>
                                 <tr>
                                 <th>Name</th>
-                                <th>Staff_ID</th>
+                                <th>Staff ID</th>
                                 <th>Location</th>
                                 <th>Gender</th>
                                 <th>Address</th>
@@ -73,7 +73,7 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                 <tr>
                                 {% comment %} <td><a href="{% url 'employee_details' employee.id %}">{{ employee.name }}</a></td> {% endcomment %}
                                 <td>{{ employee.name }}</td>
-                                <td>{{ employee.staff_id }}</td>
+                                <td>{{ employee.staff_id|upper }}</td>
                                 <td>{{ employee.location }}</td>
                                 <td>{{ employee.gender }}</td>
                                 <td>{{ employee.address }}</td>
