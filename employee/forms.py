@@ -5,11 +5,14 @@ from crispy_forms.layout import Layout, Submit, Field
 
 
 class EmployeeForm(forms.ModelForm):
+    
+    staff_id = forms.CharField(label = "Staff ID")
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'name',
+            'staff_id'
             'location',
             'gender',
             'address',
@@ -20,7 +23,7 @@ class EmployeeForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ['name',  'location', 'gender', 'address', 'position', 'department']
+        fields = ['name',  'location', 'gender', 'address', 'position', 'department', 'staff_id']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
@@ -28,4 +31,5 @@ class EmployeeForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'position': forms.TextInput(attrs={'class': 'form-control'}),
             'department': forms.TextInput(attrs={'class': 'form-control'}),
+            'staff_id': forms.TextInput(attrs={'class': 'form-control'}),
         }

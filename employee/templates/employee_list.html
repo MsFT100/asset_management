@@ -60,11 +60,13 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                             <thead>
                                 <tr>
                                 <th>Name</th>
+                                <th>Staff ID</th>
                                 <th>Location</th>
                                 <th>Gender</th>
                                 <th>Address</th>
                                 <th>Position</th>
                                 <th>Department</th>
+                                <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,11 +74,13 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                 <tr>
                                 {% comment %} <td><a href="{% url 'employee_details' employee.id %}">{{ employee.name }}</a></td> {% endcomment %}
                                 <td>{{ employee.name }}</td>
+                                <td>{{ employee.staff_id|upper }}</td>
                                 <td>{{ employee.location }}</td>
                                 <td>{{ employee.gender }}</td>
                                 <td>{{ employee.address }}</td>
                                 <td>{{ employee.position }}</td>
                                 <td>{{ employee.department }}</td>
+                                
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{% url 'employee_details' employee.id %}">
                                     <i class="fas fa-eye"></i>
