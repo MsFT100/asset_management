@@ -66,6 +66,7 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                 <th>Address</th>
                                 <th>Position</th>
                                 <th>Department</th>
+                                <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,6 +80,7 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                 <td>{{ employee.address }}</td>
                                 <td>{{ employee.position }}</td>
                                 <td>{{ employee.department }}</td>
+                                
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{% url 'employee_details' employee.id %}">
                                     <i class="fas fa-eye"></i>
