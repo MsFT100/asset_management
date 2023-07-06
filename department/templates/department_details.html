@@ -1,16 +1,16 @@
-{% extends 'adminlte/base.html' %} {% load static %} {% block title %} department
-List {% endblock %} {% block content %} {% load crispy_forms_tags %}
+{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Department
+Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Details</h1>
+                <h1>Department Details</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-                    <li class="breadcrumb-item active">Details</li>
+                    <li class="breadcrumb-item active">Department Details</li>
                 </ol>
             </div>
         </div>
@@ -42,9 +42,10 @@ List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                 </div>
                
                 <div class="form-group">
-                    <label for="inputName">Comments</label>
-                    <input type="text" id="inputName" value="{{department.comment|upper }}" class="form-control" disabled/>
+                    <label for="inputComment">Comments</label>
+                    <textarea id="inputComment" class="form-control" rows="4" disabled>{{ department.comment|upper }}</textarea>
                 </div>
+                
                 
                 <div class="form-group">
                     <label for="inputEmail">Is Active </label>
