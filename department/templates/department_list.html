@@ -1,0 +1,182 @@
+{% extends 'adminlte/base.html' %}
+
+{% load static %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}"/>
+{% endblock %}
+
+{% block title %}
+Department List
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Department List</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Department List</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <a href="{% url 'department_create' %}" class="btn btn-primary float-right">Create Department</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dataTables_length" id="department-table_length">
+                            <label>Show
+                                <select class="custom-select custom-select-sm form-control form-control-sm float-right" id="page-size-select">
+                                    <option value="5" {% if size == 5 %}selected{% endif %}>5</option>
+                                    <option value="10" {% if size == 10 %}selected{% endif %}>10</option>
+                                    <option value="25" {% if size == 25 %}selected{% endif %}>25</option>
+                                    <option value="50" {% if size == 50 %}selected{% endif %}>50</option>
+                                    <option value="100" {% if size == 100 %}selected{% endif %}>100</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <table id="department-table" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    
+                                    <th>Branch</th>
+                                    <th>Comments</th>
+                                    <th>Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for department in department_list %}
+                                <tr>
+                                    {% comment %} <td><a href="{% url 'department_details' department.id %}">{{ department.name }}</a></td> {% endcomment %}
+                                    <td>{{ department.name }}</td>
+                                    <td>{{ department.comment }}</td>
+                                    <td>{{ department.branch }}</td>
+                                    <td>
+                                        {% if department.department_active %}
+                                        <span class="badge bg-success">Active</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-primary btn-sm" href="{% url 'department_details' department.id %}">
+                                        <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-info btn-sm" href="{% url 'department_edit' department.id %}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="{% url 'department_delete' department.id %}">
+                                        <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                    </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4">No Departments found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+{% endblock %}
+
+{% block additional_js %}
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        // DataTable initialization with responsive extension
+        $("#department-table").DataTable({
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            buttons: [
+                {
+                    extend: "copy",
+                    text: "Copy",
+                    exportOptions: {
+                        columns: [0, 1, 2],
+                    },
+                },
+                {
+                    extend: "excel",
+                    text: "Excel",
+                    exportOptions: {
+                        columns: [0, 1, 2],
+                    },
+                },
+                {
+                    extend: "pdf",
+                    text: "PDF",
+                    exportOptions: {
+                        columns: [0, 1, 2],
+                    },
+                },
+                {
+                    extend: "print",
+                    text: "Print",
+                    exportOptions: {
+                        columns: [0, 1, 2],
+                    },
+                },
+                "colvis",
+            ],
+        });
+
+        // Change page size
+        $("#page-size-select").on("change", function () {
+            var size = $(this).val();
+            var currentUrl = window.location.href;
+            var newUrl = currentUrl.split("?")[0] + "?size=" + size;
+            window.location.href = newUrl;
+        });
+    });
+</script>
+{% endblock %}
