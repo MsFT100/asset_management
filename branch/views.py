@@ -79,3 +79,16 @@ def branch_details(request, branch_id):
         return render(request, 'branch_details.html', {'branch': branch})
     else:
         raise Http404("Branch not found.")
+    
+@login_required
+@permission_required("branch.delete_branch", raise_exception=True)
+def branch_delete(request, branch_id):
+    dept = get_object_or_404(Branch, id=branch_id)
+    if request.method == "POST":
+        dept.delete()
+        return redirect('branch_list')
+    context = {
+        'branch': dept
+    }
+    return render(request, "branch_delete.html", context)
+

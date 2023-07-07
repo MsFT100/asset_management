@@ -85,4 +85,18 @@ def employee_details(request, employee_id):
         return render(request, 'employee_details.html', {'employee': employee})
     else:
         raise Http404("Employee not found.")
+    
+    
+@login_required
+@permission_required("employee.delete_employee", raise_exception=True)
+def employee_delete(request, employee_id):
+    dept = get_object_or_404(Employee, id=employee_id)
+    if request.method == "POST":
+        dept.delete()
+        return redirect('employee_list')
+    context = {
+        'employee': dept
+    }
+    return render(request, "employee_delete.html", context)
+
 
