@@ -1,5 +1,6 @@
 from django.db import models
 from company.models import Company, CustomUser
+from department.models import Department
 
 GENDER_CHOICES = (
     ('M', 'Male'),
@@ -16,7 +17,9 @@ class Employee(models.Model):
         max_length=1, choices=GENDER_CHOICES, default='M', null=True)
     address = models.CharField(max_length=100)
     position = models.CharField(max_length=50)
-    department = models.CharField(max_length=50)
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True)
+
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -309,7 +309,7 @@
             class="brand-image img-circle elevation-3"
             style="opacity: 0.8"
           />
-          <span class="brand-text font-weight-light">IT ASSET</span>
+          <span class="brand-text font-weight-light">{{ request.user.company.name|upper }}</span>
         </a>
 
         <!-- Sidebar -->
@@ -525,6 +525,75 @@
                     <a
                       href="{% url 'device_list' %}"
                       class="nav-link {% if '/device/' in active_menu and 'list' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-list-ul"></i>
+                      <p>List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {% endif %}
+              {% if perms.accessories.view_accessories %}
+              <li class="nav-item">
+                <a
+                  href="{% url 'accessories_list' %}"
+                  class="nav-link {% if '/device/' in active_menu %}active{% endif %}"
+                >
+                  <i class="nav-icon fa fa-desktop"></i>
+                  <p>
+                    Accessories
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'accessories_create' %}"
+                      class="nav-link {% if '/accessories/' in active_menu and 'create' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-plus-circle"></i>
+                      <p>Create</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'accessories_list' %}"
+                      class="nav-link {% if '/accessories/' in active_menu and 'list' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-list-ul"></i>
+                      <p>List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {% endif %}
+
+              {% if perms.software.view_software %}
+              <li class="nav-item">
+                <a
+                  href="{% url 'software_list' %}"
+                  class="nav-link {% if '/device/' in active_menu %}active{% endif %}"
+                >
+                  <i class="nav-icon fa fa-desktop"></i>
+                  <p>
+                    Software
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'software_create' %}"
+                      class="nav-link {% if '/software/' in active_menu and 'create' in active_menu %}active{% endif %}"
+                    >
+                      <i class="nav-icon fa fa-plus-circle"></i>
+                      <p>Create</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'software_list' %}"
+                      class="nav-link {% if '/software/' in active_menu and 'list' in active_menu %}active{% endif %}"
                     >
                       <i class="nav-icon fa fa-list-ul"></i>
                       <p>List</p>

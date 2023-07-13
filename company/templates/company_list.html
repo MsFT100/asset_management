@@ -87,7 +87,7 @@ Company List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                     <a class="btn btn-info btn-sm" href="{% url 'company_edit' company.id %}">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
+                                    <a class="btn btn-danger btn-sm" href="{% url 'company_delete' company.id %}">
                                     <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

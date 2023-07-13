@@ -79,11 +79,20 @@ def department_edit(request, department_id):
 @login_required
 @permission_required("department.delete_department", raise_exception=True)
 def department_delete(request, department_id):
-    dept = get_object_or_404(Department, id=department_id)
-    if request.method == "POST":
-        dept.delete()
-        return redirect('department_list')
-    context = {
-        'department': dept
-    }
-    return render(request, "department_delete.html", context)
+    department = get_object_or_404(Department, id=department_id)
+    if request.user.company.id == department.company.id:
+
+        
+        if request.method == "POST":
+            department.delete()
+            return redirect('department_list')
+        context = {
+            'department': department
+        }
+        return render(request, "department_delete.html", context)
+    
+    else:
+        raise Http404("department not found.")
+
+
+    

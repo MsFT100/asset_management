@@ -1,0 +1,47 @@
+{% extends "adminlte/base.html" %}
+{% load static %}
+{% block title %}
+Branch Delete {% endblock %} 
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Delete Branch</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                   
+                    <li class="breadcrumb-item active">Delete Branch</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <h4>Are you sure you want to delete branch: <strong>{{ branch.name }}?</strong></h4>
+
+                        <p>Deleting the branch will remove all associated data.</p>
+                        <form action="{% url 'branch_delete' branch.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a href="{% url 'branch_list' %}" class="btn btn-secondary">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

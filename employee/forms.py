@@ -30,6 +30,7 @@ class EmployeeForm(forms.ModelForm):
             # 'gender': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'position': forms.TextInput(attrs={'class': 'form-control'}),
-            'department': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'department': forms.TextInput(attrs={'class': 'form-control'}),            
+            'department': forms.Select(attrs={'class': 'form-control'}),
             'staff_id': forms.TextInput(attrs={'class': 'form-control'}),
         }

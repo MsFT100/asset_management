@@ -103,3 +103,23 @@ def company_details(request, company_id):
         return render(request, 'company_details.html', {'company': company})
     else:
         raise Http404("Company not found.")
+    
+@login_required
+@permission_required("company.delete_company", raise_exception=True)
+def company_delete(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    if request.user.company.id == company.id:
+        
+        if request.method == "POST":
+            company.delete()
+            return redirect('company_list')
+        context = {
+            'company': company
+        }
+        return render(request, "company_delete.html", context)
+    
+    else:
+        raise Http404("Company not found.")
+
+
+    
