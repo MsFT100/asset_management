@@ -92,7 +92,7 @@ def department_delete(request, department_id):
         return render(request, "department_delete.html", context)
     
     else:
-        raise Http404("department not found.")
+        raise Http404("Department not found.")
 
 
     
