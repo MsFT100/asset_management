@@ -1,0 +1,100 @@
+{% extends 'adminlte/base.html' %} {% load static %} {% block title %} Software
+Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Software Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Software Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class="card">
+        <div class="card-body row">
+            </div>
+            <div class="col-7">
+                <div class="form-group">
+                    <label for="inputName">License_key</label>
+                    <input type="text" id="inputName" value="{{software.License_key }}" class="form-control" disabled/>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail">License_name</label>
+                    <input type="text" id="inputEmail" value="{{software.License_name }}" class="form-control" disabled/>
+                </div>
+                 
+                <div class="form-group">
+                    <label for="inputEmail">License_email</label>
+                    <input type="text" id="inputEmail" value="{{software.License_email }}" class="form-control" disabled/>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="inputEmail">License_allocated</label>
+                    <input type="text" id="inputEmail" value="{{software.License_allocated }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">License_type</label>
+                    <input type="text" id="inputEmail" value="{{software.License_type }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Purchase_date</label>
+                    <input type="decimal" id="inputEmail" value="{{software.Purchase_date }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Purchase_order</label>
+                    <input type="number" id="inputEmail" value="{{software.Purchase_order }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Seats</label>
+                    <input type="text" id="inputEmail" value="{{software.Seats|lower }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Expiration_date</label>
+                    <input type="url" id="inputEmail" value="{{software.Expiration_date }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Order_number</label>
+                    <input type="number" id="inputEmail" value="{{software.Order_number }}" class="form-control" disabled/>
+    
+                <div class="form-group">
+                    <label for="inputEmail">Purchase_cost</label>
+                    <input type="name" id="inputEmail" value="{{software.Purchase_cost }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Supplier_id</label>
+                    <input type="text" id="inputEmail" value="{{software.Supplier_id }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Comments</label>
+                    <input type="text" id="inputEmail" value="{{software.Comments }}" class="form-control" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <a href="{% url 'software_edit' software.id %}" class="btn btn-primary float-right">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

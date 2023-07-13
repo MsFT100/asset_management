@@ -83,12 +83,20 @@ def device_details(request, device_id):
 @login_required
 @permission_required("device.delete_device", raise_exception=True)
 def device_delete(request, device_id):
-    dept = get_object_or_404(Device, id=device_id)
-    if request.method == "POST":
-        dept.delete()
-        return redirect('device_list')
-    context = {
-        'device': dept
-    }
-    return render(request, "device_delete.html", context)
+    device = get_object_or_404(Device, id=device_id)
+    if request.user.company.id == device.company.id:
+
+        
+        if request.method == "POST":
+            device.delete()
+            return redirect('device_list')
+        context = {
+            'device': device
+        }
+        return render(request, "device_delete.html", context)
+    
+    else:
+        raise Http404("Device not found.")
+
+
 

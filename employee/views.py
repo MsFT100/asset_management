@@ -90,13 +90,21 @@ def employee_details(request, employee_id):
 @login_required
 @permission_required("employee.delete_employee", raise_exception=True)
 def employee_delete(request, employee_id):
-    dept = get_object_or_404(Employee, id=employee_id)
-    if request.method == "POST":
-        dept.delete()
-        return redirect('employee_list')
-    context = {
-        'employee': dept
-    }
-    return render(request, "employee_delete.html", context)
+    employee = get_object_or_404(Employee, id=employee_id)
+    if request.user.company.id == employee.company.id:
+
+        
+        if request.method == "POST":
+            employee.delete()
+            return redirect('employee_list')
+        context = {
+            'employee': employee
+        }
+        return render(request, "employee_delete.html", context)
+    
+    else:
+        raise Http404("Employee not found.")
+
+    
 
 

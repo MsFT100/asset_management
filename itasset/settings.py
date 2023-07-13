@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "employee",
     "department",
     "device",
+    "accessories",
+    "software",
     "crispy_forms",
     "crispy_bootstrap4"
 ]
