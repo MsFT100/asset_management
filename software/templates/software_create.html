@@ -1,19 +1,19 @@
 {% extends 'adminlte/base.html' %} 
 
 {% load static %} {% block title %}
-Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
+License Add {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Create Software</h1>
+                <h1 class="m-0">Add License Key</h1>
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Create Software</li>
+                    <li class="breadcrumb-item active">Add License Key</li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -39,10 +39,7 @@ Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                         {{form.errors}}
                         <div class="row form-group">
                             <div class="col-sm-12 col-md-12"></div>
-                        </div>
-
-                        {% csrf_token %}
-                        
+                        </div>                        
 
                         {{ form.license_key|as_crispy_field }}
                         {{ form.license_name|as_crispy_field }}
@@ -53,7 +50,6 @@ Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                         {{ form.purchase_order|as_crispy_field }}
                         {{ form.seats|as_crispy_field }}
                         {{ form.expiration_date|as_crispy_field }}
-                        {{ form.order_number|as_crispy_field }}
                         {{ form.purchase_cost|as_crispy_field }}
                         {{ form.supplier_id|as_crispy_field }}
                         {{ form.comments|as_crispy_field }}

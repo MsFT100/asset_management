@@ -3,7 +3,7 @@
 {% extends 'adminlte/base.html' %} 
 
 {% load static %} {% block title %}
-Accessories List {% endblock %} {% block content %} {% load crispy_forms_tags %}
+Accessories Edit {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <div class="content-header">
     <div class="container-fluid">
@@ -30,7 +30,6 @@ Accessories List {% endblock %} {% block content %} {% load crispy_forms_tags %}
     <div class="col-md-12">
         <div class="card">
             <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
                 <div
                     class="card-body row d-flex align-items-center justify-content-center"
                 >

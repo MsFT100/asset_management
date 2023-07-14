@@ -19,7 +19,6 @@ class SoftwareForm(forms.ModelForm):
             'purchase_order',
             'seats',
             'expiration_date',
-            'order_number',
             'purchase_cost',
             'supplier_id',
             'comments',
@@ -38,7 +37,6 @@ class SoftwareForm(forms.ModelForm):
            'purchase_order',
            'seats',
            'expiration_date',
-           'order_number',
            'purchase_cost',
            'supplier_id',
            'comments',]

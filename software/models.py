@@ -5,7 +5,7 @@ from employee.models import Employee
 # Create your models here
 class Software(models.Model):
     id = models.AutoField(primary_key=True)
-    license_key = models.CharField(max_length=191, null=True)
+    license_key = models.TextField(blank=True, null=True)
     license_name =  models.CharField(max_length=120,blank=True, null=True)
     license_email =  models.CharField(max_length=120, blank=True, null=True)
     license_allocated = models.IntegerField(blank=True, null=True)
@@ -16,7 +16,6 @@ class Software(models.Model):
     seats =  models.IntegerField(null= False)
     expiration_date = models.DateTimeField(blank=True, null=True)
 
-    order_number = models.CharField(max_length=191, blank=True, null=True)
     purchase_cost = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
 
     # TODO
