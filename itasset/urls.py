@@ -49,6 +49,8 @@ urlpatterns = [
     path("department/", include("department.urls")),
     path("accessories/", include("accessories.urls")),
     path("software/", include("software.urls")),
+
+    path('api/', include('rest_framework.urls')),
 ]
 
 
