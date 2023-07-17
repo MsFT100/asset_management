@@ -50,7 +50,7 @@ urlpatterns = [
     path("accessories/", include("accessories.urls")),
     path("software/", include("software.urls")),
 
-    path('api/', include('rest_framework.urls')),
+    path('api/', include('api.urls')),
 ]
 
 
