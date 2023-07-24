@@ -33,11 +33,14 @@ Company List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content">
     <div class="container-fluid">
+        {% if perms.company.add_company %}
+
         <div class="row">
             <div class="col-12">
                 <a href="{% url 'company_create' %}" class="btn btn-primary float-right">Create Company</a>
             </div>
         </div>
+        {% endif %}
     </br>
         <div class="row">
             <div class="col-md-12">
@@ -81,15 +84,24 @@ Company List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                     {% endif %}
                                 </td>
                                 <td class="project-actions text-right">
+                                    {% if perms.company.view_company %}
+
                                     <a class="btn btn-primary btn-sm" href="{% url 'company_details' company.id %}">
                                     <i class="fas fa-eye"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.company.change_company %}
+
                                     <a class="btn btn-info btn-sm" href="{% url 'company_edit' company.id %}">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.company.delete_company %}
+
                                     <a class="btn btn-danger btn-sm" href="{% url 'company_delete' company.id %}">
                                     <i class="fas fa-trash"></i>
                                     </a>
+                                    {% endif %}
                                 </td>
                                 </tr>
                                 {% empty %}

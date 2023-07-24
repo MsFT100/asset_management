@@ -33,10 +33,13 @@ Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content">
     <div class="container-fluid">
+        {% if perms.software.add_software %}
+
         <div class="row">
             <div class="col-12">
                 <a href="{% url 'software_create' %}" class="btn btn-primary float-right">Create Software</a>
             </div>
+            {% endif %}
         </div>
     </br>
         <div class="row">
@@ -58,17 +61,13 @@ Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
                             <thead>
                                 <tr>
-                                    <th>license_key</th>
-                                    <th>license_name</th>
-                                    <th>license_email</th>
-                                    <th>license_allocated</th>
-                                    <th>license_type</th>
-                                    <th>purchase_date</th>
-                                    <th>purchase_order</th>
-                                    <th>seats</th>
-                                    <th>expiration_date</th>
-                                    <th>purchase_cost</th>
-                                    <th>supplier_id</th>
+                                    <th>Key</th>
+                                    <th>Name</th>
+                                    <th>Allocated</th>
+                                    <th>Seats</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                    
  
                                 </tr>
                             </thead>
@@ -79,33 +78,34 @@ Software List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
                                 <td>{{ software.license_key }}</td>
                                 <td>{{ software.license_name }}</td>
-                                <td>{{ software.license_email }}</td>
                                 <td>{{ software.license_allocated }}</td>
-                                <td>{{ software.license_type }}</td>
-                                <td>{{ software.purchase_date }}</td>
-                                <td>{{ software.purchase_order }}</td>
                                 <td>{{ software.seats }}</td>
                                 <td>{{ software.expiration_date }}</td>
-                                <td>{{ software.purchase_cost }}</td>
-                                <td>{{ software.supplier_id }}</td>
-                                <td>{{ software.comments}}</td>
-
                                 
                                 <td class="project-actions text-right">
+                                    {% if perms.software.view_software %}
+
                                     <a class="btn btn-primary btn-sm" href="{% url 'software_details' software.id %}">
                                     <i class="fas fa-eye"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.software.change_software %}
+
                                     <a class="btn btn-info btn-sm" href="{% url 'software_edit' software.id %}">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.software.delete_software %}
+
                                     <a class="btn btn-danger btn-sm" href="{% url 'software_delete' software.id %}">
                                     <i class="fas fa-trash"></i>
                                     </a>
+                                    {% endif %}
                                 </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                <td colspan="4">No softwarees found.</td>
+                                <td colspan="4">No softwares found.</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

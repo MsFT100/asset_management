@@ -429,7 +429,7 @@
 
               {% endif %}
               {% if perms.department.view_department %}
-              <li class="nav-item menu-open">
+              <li class="nav-item">
                 <a
                   href="{% url 'department_list' %}"
                   class="nav-link {% if '/department/' in active_menu %}active{% endif %}"

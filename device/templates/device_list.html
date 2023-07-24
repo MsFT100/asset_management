@@ -33,10 +33,13 @@ Device List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content">
     <div class="container-fluid">
+        {% if perms.device.add_device %}
+
         <div class="row">
             <div class="col-12">
                 <a href="{% url 'device_create' %}" class="btn btn-primary float-right">Create Device</a>
             </div>
+            {% endif %}
         </div>
     </br>
         <div class="row">
@@ -58,27 +61,27 @@ Device List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                             
                             <thead>
                                 <tr>
-                                    <th>image</th>
-                                    <th>Asset_tag</th>
-                                    <th>model_id</th>
-                                    <th>Serial_no</th>
-                                    <th>Purchase_date</th>
-                                    <th>asset_eol_date</th>
-                                    <th>purchase_cost</th>
-                                    <th>order_number</th>
-                                    <th>status</th>
-                                    <th>rtd_location_id</th>
-                                    <th>warranty_months</th>
-                                    <th>supplier_id</th>
-                                    <th>last_checkout</th>
-                                    <th>expected_checkin</th>
-                                    <th>assigned_type</th>
-                                    <th>last_audit_date</th>
+                                    <th>Image</th>
+                                    <th>Asset-Tag</th>
+                                    <th>Model-Id</th>
+                                    <th>Serial-No</th>
+                                    <th>Purchase-Date</th>
+                                    <th>Asset-Eol-Date</th>
+                                    <th>Purchase-Cost</th>
+                                    <th>Order-Number</th>
+                                    <th>Status</th>
+                                    <th>Rtd-Location-Id</th>
+                                    <th>Warranty-Months</th>
+                                    <th>Supplier-Id</th>
+                                    <th>Last-Checkout</th>
+                                    <th>Expected-Checkin</th>
+                                    <th>Assigned-Type</th>
+                                    <th>Last-Audit-Date</th>
                                     <th>DateField</th>
-                                    <th>archived</th>
-                                    <th>physical</th>
-                                    <th>depreciate</th>
-                                    <th>byod</th>
+                                    <th>Archived</th>
+                                    <th>Physical</th>
+                                    <th>Depreciate</th>
+                                    <th>Byod</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -116,15 +119,24 @@ Device List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
                                 
                                 <td class="project-actions text-right">
+                                    {% if perms.device.view_device %}
+
                                     <a class="btn btn-primary btn-sm" href="{% url 'device_details' device.id %}">
                                     <i class="fas fa-eye"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.device.change_device %}
+
                                     <a class="btn btn-info btn-sm" href="{% url 'device_edit' device.id %}">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.device.delete_device %}
+
                                     <a class="btn btn-danger btn-sm" href="{% url 'device_delete' device.id %}">
                                     <i class="fas fa-trash"></i>
                                     </a>
+                                    {% endif%}
                                 </td>
                                 </tr>
                                 {% empty %}

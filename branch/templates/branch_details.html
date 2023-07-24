@@ -46,10 +46,11 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                     <span class="badge bg-danger">Inactive</span>
                                     {% endif %}
                 </div>
-               
+                {% if perms.branch.change_branch %}
                 <div class="form-group">
                     <a href="{% url 'branch_edit' branch.id %}" class="btn btn-primary float-right">Edit</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

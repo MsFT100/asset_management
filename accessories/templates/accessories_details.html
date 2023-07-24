@@ -46,9 +46,11 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
                     <input type="text" id="inputBranch" value="{{ accessories.image }}" class="form-control" disabled/>
                 </div>
                
+                {% if perms.accessories.change_accessories %}
                 <div class="form-group">
                     <a href="{% url 'accessories_edit' accessories.id %}" class="btn btn-primary float-right">Edit</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -34,10 +34,13 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
 
 <section class="content">
     <div class="container-fluid">
+        {% if perms.employee.add_employee %}
+
         <div class="row">
             <div class="col-12">
                 <a href="{% url 'employee_create' %}" class="btn btn-primary float-right">Create Employee</a>
             </div>
+            {% endif %}
         </div>
     </br>
         <div class="row">
@@ -82,15 +85,24 @@ Employee List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                 <td>{{ employee.department }}</td>
                                 
                                 <td class="project-actions text-right">
+                                    {% if perms.employee.view_employee %}
+
                                     <a class="btn btn-primary btn-sm" href="{% url 'employee_details' employee.id %}">
                                     <i class="fas fa-eye"></i>
                                     </a>
+                                    {% endif %}
+                                    {% if perms.employee.change_employee %}
+
                                     <a class="btn btn-info btn-sm" href="{% url 'employee_edit' employee.id %}">
                                     <i class="fas fa-pencil-alt"></i>
                                     </a>
+                                    {% endif%}
+                                    {% if perms.employee.delete_employee %}
+
                                     <a class="btn btn-danger btn-sm" href="{% url 'employee_delete' employee.id %}">
                                     <i class="fas fa-trash"></i>
                                     </a>
+                                    {% endif%}
                                 </td>
                                 </tr>
                                 {% empty %}
