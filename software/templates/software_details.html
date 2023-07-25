@@ -91,7 +91,7 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
                     <label for="inputEmail">Comments</label>
                     <input type="text" id="inputEmail" value="{{software.comments }}" class="form-control" disabled/>
                 </div>
-                {% if perms.software.add_software %}
+                {% if perms.software.change_software %}
 
 
                 <div class="form-group">
