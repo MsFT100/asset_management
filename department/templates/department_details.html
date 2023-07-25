@@ -55,7 +55,7 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                     <span class="badge bg-danger">Inactive</span>
                                     {% endif %}
                 </div>
-                {% if perms.department.add_department %}
+                {% if perms.department.change_department %}
 
                 <div class="form-group">
                     <a href="{% url 'department_edit' department.id %}" class="btn btn-primary float-right">Edit</a>

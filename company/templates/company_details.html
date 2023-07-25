@@ -58,7 +58,7 @@ List {% endblock %} {% block content %} {% load crispy_forms_tags %}
                                     <span class="badge bg-danger">Inactive</span>
                                     {% endif %}
                 </div>
-                {% if perms.company.add_company %}
+                {% if perms.company.change_company %}
                
                 <div class="form-group">
                     <a href="{% url 'company_edit' company.id %}" class="btn btn-primary float-right">Edit</a>

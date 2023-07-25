@@ -58,7 +58,7 @@ Details {% endblock %} {% block content %} {% load crispy_forms_tags %}
                     <label for="inputDepartment">Department</label>
                     <input type="text" id="inputDepartment" value="{{employee.department|upper }}" class="form-control" disabled/>
                 </div>
-                {% if perms.employee.add_employee %}
+                {% if perms.employee.change_employee %}
 
                 <div class="form-group">
                     <a href="{% url 'employee_edit' employee.id %}" class="btn btn-primary float-right">Edit</a>
